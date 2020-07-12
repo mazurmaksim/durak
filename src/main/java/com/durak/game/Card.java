@@ -7,10 +7,10 @@ public class Card {
 	public static final int EIGHT = 8;
 	public static final int NINE = 9;
 	public static final int TEN = 10;
-	public static final int JACK = 74;
-	public static final int QUEEN = 81;
-	public static final int KING = 75;
-	public static final int ACE = 65;
+	public static final int JACK = 11;
+	public static final int QUEEN = 12;
+	public static final int KING = 13;
+	public static final int ACE = 14;
 
 	// suits
 	public static final int DIAMONDS = 4;
@@ -34,6 +34,11 @@ public class Card {
 		return suit;
 	}
 	
+	public int getRang() {
+		
+		return rang;
+		
+	}
 	public String toString() {
 		
 		String strSuit = "";
@@ -60,13 +65,13 @@ public class Card {
 		 break;
 		 case 10 : strRang = "TEN";
 		 break;
-		 case 74 : strRang = "JACK";
+		 case 11 : strRang = "JACK";
 		 break;
-		 case 81 : strRang = "QUEEN";
+		 case 12 : strRang = "QUEEN";
 		 break;
-		 case 75 : strRang = "KING";
+		 case 13 : strRang = "KING";
 		 break;
-		 case 65 : strRang = "ACE";
+		 case 14 : strRang = "ACE";
 		 break;		 
 		}
 	

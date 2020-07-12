@@ -8,12 +8,14 @@ public class Main {
 		Dealer dlr = new Dealer(deck);
 		Player oleg = new Player("Oleg");
 		Player maks = new Player("Maks");
-//		Player nik = new Player("Nikita");
+		Player nik = new Player("Nikita");
 //		
 
 		dlr.shuffleDeck();
 		dlr.dealCards(oleg);
 		dlr.dealCards(maks);
+		dlr.dealCards(nik);
+		
 		System.out.println(oleg.getName() + " Has this cards ");
 
 		for (Card cr : oleg.getCards(dlr)) {
@@ -37,11 +39,11 @@ public class Main {
 //			System.out.println(cr);
 //
 //		}
-//		System.out.println(deck.getDeck().size());
-		
+//		
 		dlr.trumpCard();
-		oleg.checkTrump(dlr);
-		maks.checkTrump(dlr);
+		System.out.println(oleg.findSmallerTrump(dlr));
+		System.out.println(maks.findSmallerTrump(dlr));
+//		System.out.println(nik.checkTrump(dlr));
 		System.out.println("Козырь "  + dlr.getTrump());
 	}
 

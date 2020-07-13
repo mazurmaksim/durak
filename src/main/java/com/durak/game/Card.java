@@ -1,9 +1,13 @@
 package com.durak.game;
 
 import java.awt.image.BufferedImage;
+import com.durak.game.gfx.ImageLoader;
 
 public class Card {
 
+	private static final int WIDTH = 202, HEIGHT = 281;
+
+	// rang
 	public static final int SIX = 6;
 	public static final int SEVEN = 7;
 	public static final int EIGHT = 8;
@@ -20,23 +24,208 @@ public class Card {
 	public static final int SPADES = 6;
 	public static final int CLUBS = 5;
 
-	private BufferedImage sheet;
-
+	public static SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/cards.png"));
 	public int rang;
 	public int suit;
-	public boolean cardShirt;
+	public boolean face_up = false;
 
-	public Card(int suit, int rang, BufferedImage sheet) {
+	public Card(int suit, int rang) {
 
 		this.rang = rang;
 		this.suit = suit;
-		this.sheet = sheet;
-
 	}
 
-	public BufferedImage getSheet() {
+	public void faceUp() {
 
-		return sheet;
+		face_up = true;
+	}
+
+	public void faceDoWn() {
+
+		face_up = false;
+	}
+
+	public BufferedImage display(boolean face_up) {
+
+		if (face_up == true) {
+			// Clubs
+			if (rang == SIX && suit == CLUBS) {
+				return sheet.crop(0, 0, WIDTH, HEIGHT);
+			}
+
+			if (rang == SEVEN && suit == CLUBS) {
+				return sheet.crop(202, 0, WIDTH, HEIGHT);
+			}
+
+			if (rang == EIGHT && suit == CLUBS) {
+				return sheet.crop(404, 0, WIDTH, HEIGHT);
+			}
+
+			if (rang == NINE && suit == CLUBS) {
+
+				return sheet.crop(606, 0, WIDTH, HEIGHT);
+			}
+
+			if (rang == TEN && suit == CLUBS) {
+
+				return sheet.crop(808, 0, WIDTH, HEIGHT);
+			}
+
+			if (rang == JACK && suit == CLUBS) {
+
+				return sheet.crop(1010, 0, WIDTH, HEIGHT);
+			}
+
+			if (rang == QUEEN && suit == CLUBS) {
+
+				return sheet.crop(1212, 0, WIDTH, HEIGHT);
+			}
+
+			if (rang == KING && suit == CLUBS) {
+
+				return sheet.crop(1414, 0, WIDTH, HEIGHT);
+			}
+
+			if (rang == ACE && suit == CLUBS) {
+
+				return sheet.crop(1616, 0, WIDTH, HEIGHT);
+			}
+
+			// Spades
+			if (rang == SIX && suit == SPADES) {
+				return sheet.crop(0, 281, WIDTH, HEIGHT);
+			}
+
+			if (rang == SEVEN && suit == SPADES) {
+				return sheet.crop(202, 281, WIDTH, HEIGHT);
+			}
+
+			if (rang == EIGHT && suit == SPADES) {
+				return sheet.crop(404, 281, WIDTH, HEIGHT);
+			}
+
+			if (rang == NINE && suit == SPADES) {
+
+				return sheet.crop(606, 281, WIDTH, HEIGHT);
+			}
+
+			if (rang == TEN && suit == SPADES) {
+
+				return sheet.crop(808, 281, WIDTH, HEIGHT);
+			}
+
+			if (rang == JACK && suit == SPADES) {
+
+				return sheet.crop(1010, 281, WIDTH, HEIGHT);
+			}
+
+			if (rang == QUEEN && suit == SPADES) {
+
+				return sheet.crop(1212, 281, WIDTH, HEIGHT);
+			}
+
+			if (rang == KING && suit == SPADES) {
+
+				return sheet.crop(1414, 281, WIDTH, HEIGHT);
+			}
+
+			if (rang == ACE && suit == SPADES) {
+
+				return sheet.crop(1616, 281, WIDTH, HEIGHT);
+			}
+
+			// Hearts
+			if (rang == SIX && suit == HEARTS) {
+				return sheet.crop(0, 562, WIDTH, HEIGHT);
+			}
+
+			if (rang == SEVEN && suit == HEARTS) {
+				return sheet.crop(202, 562, WIDTH, HEIGHT);
+			}
+
+			if (rang == EIGHT && suit == HEARTS) {
+				return sheet.crop(404, 562, WIDTH, HEIGHT);
+			}
+
+			if (rang == NINE && suit == HEARTS) {
+
+				return sheet.crop(606, 562, WIDTH, HEIGHT);
+			}
+
+			if (rang == TEN && suit == HEARTS) {
+
+				return sheet.crop(808, 562, WIDTH, HEIGHT);
+			}
+
+			if (rang == JACK && suit == HEARTS) {
+
+				return sheet.crop(1010, 562, WIDTH, HEIGHT);
+			}
+
+			if (rang == QUEEN && suit == HEARTS) {
+
+				return sheet.crop(1212, 562, WIDTH, HEIGHT);
+			}
+
+			if (rang == KING && suit == HEARTS) {
+
+				return sheet.crop(1414, 562, WIDTH, HEIGHT);
+			}
+
+			if (rang == ACE && suit == HEARTS) {
+
+				return sheet.crop(1616, 562, WIDTH, HEIGHT);
+			}
+
+			// Diamonds
+			if (rang == SIX && suit == DIAMONDS) {
+				return sheet.crop(0, 843, WIDTH, HEIGHT);
+			}
+
+			if (rang == SEVEN && suit == DIAMONDS) {
+				return sheet.crop(202, 843, WIDTH, HEIGHT);
+			}
+
+			if (rang == EIGHT && suit == DIAMONDS) {
+				return sheet.crop(404, 843, WIDTH, HEIGHT);
+			}
+
+			if (rang == NINE && suit == DIAMONDS) {
+
+				return sheet.crop(606, 843, WIDTH, HEIGHT);
+			}
+
+			if (rang == TEN && suit == DIAMONDS) {
+
+				return sheet.crop(808, 843, WIDTH, HEIGHT);
+			}
+
+			if (rang == JACK && suit == DIAMONDS) {
+
+				return sheet.crop(1010, 843, WIDTH, HEIGHT);
+			}
+
+			if (rang == QUEEN && suit == DIAMONDS) {
+
+				return sheet.crop(1212, 843, WIDTH, HEIGHT);
+			}
+
+			if (rang == KING && suit == DIAMONDS) {
+
+				return sheet.crop(1414, 843, WIDTH, HEIGHT);
+			}
+
+			if (rang == ACE && suit == DIAMONDS) {
+
+				return sheet.crop(1616, 843, WIDTH, HEIGHT);
+			}
+		}
+		else if(face_up == false) {
+			
+			return sheet.crop(1616 + 202, 0, WIDTH, HEIGHT);
+			
+		}
+		return null;
 	}
 
 	public int getSuit() {

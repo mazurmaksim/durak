@@ -1,11 +1,7 @@
 package com.durak.game;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-
-import com.durak.game.gfx.ImageLoader;
 
 public class Game implements Runnable {
 	private Display display;
@@ -33,16 +29,16 @@ public class Game implements Runnable {
 
 	private void init() {
 		display = new Display(title, width, height);
+		Deck deck = new Deck();
+		deck.buildCards();
 		player = new Player("Maks");
 		comp = new Player("Computer");
-		Deck deck = new Deck();
-		Deck.buildCards();
 		dlr = new Dealer(deck);
 		dlr.shuffleDeck();
 		dlr.dealCards(comp);
 		dlr.dealCards(player);
 		trump = dlr.trumpCard();
-
+		System.out.println(deck.size());
 	}
 	
 	private void tick() {}
@@ -57,24 +53,25 @@ public class Game implements Runnable {
 		// Clear Screen
 		g.clearRect(0, 0, width, height);
 		// Draw Here
+		
 		//Player 1 cards
-		g.drawImage(player.getCards().get(0).getSheet(), 730-50, 700, null);
-		g.drawImage(player.getCards().get(1).getSheet(), 760-50, 700, null);
-		g.drawImage(player.getCards().get(2).getSheet(), 790-50, 700, null);
-		g.drawImage(player.getCards().get(3).getSheet(), 820-50, 700, null);
-		g.drawImage(player.getCards().get(4).getSheet(), 850-50, 700, null);
-		g.drawImage(player.getCards().get(5).getSheet(), 880-50, 700, null);
+		g.drawImage(player.getCards().get(0).display(true), 730-50, 700, null);
+		g.drawImage(player.getCards().get(1).display(true), 760-50, 700, null);
+		g.drawImage(player.getCards().get(2).display(true), 790-50, 700, null);
+		g.drawImage(player.getCards().get(3).display(true), 820-50, 700, null);
+		g.drawImage(player.getCards().get(4).display(true), 850-50, 700, null);
+		g.drawImage(player.getCards().get(5).display(true), 880-50, 700, null);
 
 		//Player 2 Cards
-		g.drawImage(comp.getCards().get(0).getSheet(), 730-50, 10, null);
-		g.drawImage(comp.getCards().get(1).getSheet(), 760-50, 10, null);
-		g.drawImage(comp.getCards().get(2).getSheet(), 790-50, 10, null);
-		g.drawImage(comp.getCards().get(3).getSheet(), 820-50, 10, null);
-		g.drawImage(comp.getCards().get(4).getSheet(), 850-50, 10, null);
-		g.drawImage(comp.getCards().get(5).getSheet(), 880-50, 10, null);
+		g.drawImage(comp.getCards().get(0).display(false), 730-50, 10, null);
+		g.drawImage(comp.getCards().get(1).display(false), 760-50, 10, null);
+		g.drawImage(comp.getCards().get(2).display(false), 790-50, 10, null);
+		g.drawImage(comp.getCards().get(3).display(false), 820-50, 10, null);
+		g.drawImage(comp.getCards().get(4).display(false), 850-50, 10, null);
+		g.drawImage(comp.getCards().get(5).display(false), 880-50, 10, null);
 		
 		//Trump card
-		g.drawImage(trump.getSheet(), 10, 350, null);
+		g.drawImage(trump.display(true), 10, 350, null);
 		
 		
 		//End Draw

@@ -12,6 +12,7 @@ public class Player {
 	public Player(String name) {
 		cards = new ArrayList<Card>();
 		this.name = name;
+		
 
 	}
 
@@ -20,7 +21,7 @@ public class Player {
 		return name;
 	}
 
-	public ArrayList<Card> getCards(Dealer dealer) {
+	public ArrayList<Card> getCards() {
 
 		return cards;
 

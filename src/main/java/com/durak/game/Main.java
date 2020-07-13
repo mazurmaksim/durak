@@ -18,7 +18,7 @@ public class Main {
 		
 		System.out.println(oleg.getName() + " Has this cards ");
 
-		for (Card cr : oleg.getCards(dlr)) {
+		for (Card cr : oleg.getCards()) {
 
 			System.out.println(cr);
 
@@ -26,7 +26,7 @@ public class Main {
 
 		System.out.println(maks.getName() + " Has this cards ");
 
-		for (Card cr : maks.getCards(dlr)) {
+		for (Card cr : maks.getCards()) {
 
 			System.out.println(cr);
 

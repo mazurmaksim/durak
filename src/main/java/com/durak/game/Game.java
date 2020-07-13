@@ -18,6 +18,11 @@ public class Game implements Runnable {
 	private BufferStrategy bs;
 	private Graphics g;
 	
+	private Player player;
+	private Player comp;
+	private Dealer dlr;
+	private Card trump;
+	
 	public Game(String title, int width, int height) {
 
 		this.width = width;
@@ -28,11 +33,15 @@ public class Game implements Runnable {
 
 	private void init() {
 		display = new Display(title, width, height);
+		player = new Player("Maks");
+		comp = new Player("Computer");
 		Deck deck = new Deck();
 		Deck.buildCards();
-		Dealer dlr = new Dealer(deck);
+		dlr = new Dealer(deck);
 		dlr.shuffleDeck();
-		dlr.getTrump();
+		dlr.dealCards(comp);
+		dlr.dealCards(player);
+		trump = dlr.trumpCard();
 
 	}
 	
@@ -48,17 +57,25 @@ public class Game implements Runnable {
 		// Clear Screen
 		g.clearRect(0, 0, width, height);
 		// Draw Here
+		//Player 1 cards
+		g.drawImage(player.getCards().get(0).getSheet(), 730-50, 700, null);
+		g.drawImage(player.getCards().get(1).getSheet(), 760-50, 700, null);
+		g.drawImage(player.getCards().get(2).getSheet(), 790-50, 700, null);
+		g.drawImage(player.getCards().get(3).getSheet(), 820-50, 700, null);
+		g.drawImage(player.getCards().get(4).getSheet(), 850-50, 700, null);
+		g.drawImage(player.getCards().get(5).getSheet(), 880-50, 700, null);
 
-		g.drawImage(Deck.getDeck().get(0).getSheet(), 10, 50, null);
-		g.drawImage(Deck.getDeck().get(1).getSheet(), 100, 50, null);
-		g.drawImage(Deck.getDeck().get(2).getSheet(), 190, 50, null);
-		g.drawImage(Deck.getDeck().get(3).getSheet(), 280, 50, null);
-		g.drawImage(Deck.getDeck().get(4).getSheet(), 370, 50, null);
-		g.drawImage(Deck.getDeck().get(5).getSheet(), 460, 50, null);
-		g.drawImage(Deck.getDeck().get(6).getSheet(), 550, 50, null);
-		g.drawImage(Deck.getDeck().get(7).getSheet(), 640, 50, null);
-		g.drawImage(Deck.getDeck().get(8).getSheet(), 730, 50, null);
-
+		//Player 2 Cards
+		g.drawImage(comp.getCards().get(0).getSheet(), 730-50, 10, null);
+		g.drawImage(comp.getCards().get(1).getSheet(), 760-50, 10, null);
+		g.drawImage(comp.getCards().get(2).getSheet(), 790-50, 10, null);
+		g.drawImage(comp.getCards().get(3).getSheet(), 820-50, 10, null);
+		g.drawImage(comp.getCards().get(4).getSheet(), 850-50, 10, null);
+		g.drawImage(comp.getCards().get(5).getSheet(), 880-50, 10, null);
+		
+		//Trump card
+		g.drawImage(trump.getSheet(), 10, 350, null);
+		
 		
 		//End Draw
 		bs.show();

@@ -19,6 +19,8 @@ public class Game implements Runnable {
 	private Dealer dlr;
 	private Card trump;
 	private Table table;
+	private Deck deck;
+	private int count=0;
 	
 	public Game(String title, int width, int height) {
 
@@ -30,7 +32,7 @@ public class Game implements Runnable {
 
 	private void init() {
 		display = new Display(title, width, height);
-		Deck deck = new Deck();
+		deck = new Deck();
 		deck.buildCards();
 		player = new Player("Maks");
 		comp = new Player("Computer");
@@ -74,8 +76,15 @@ public class Game implements Runnable {
 		g.drawImage(comp.getCards().get(5).faceDoWn(), 880-250, 10, null);
 		
 		//Trump card
-		g.drawImage(trump.faceUp(), 10, 350, null);
-		
+		g.drawImage(trump.faceUp(), 170, 350, null);
+		//Card deck
+		int count =3;
+		for(int i=0;i<deck.size();i++) {
+			
+			g.drawImage(deck.getDeck().get(i).faceDoWn(), 80-count-i, 350, null);
+			count++;
+			
+		}
 		
 		//End Draw
 		bs.show();

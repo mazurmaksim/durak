@@ -35,17 +35,17 @@ public class Card {
 		this.suit = suit;
 	}
 
-	public void faceUp() {
+	public BufferedImage faceUp() {
 
-		face_up = true;
+		return display(true);
 	}
 
-	public void faceDoWn() {
+	public BufferedImage faceDoWn() {
 
-		face_up = false;
+		return display(false);
 	}
 
-	public BufferedImage display(boolean face_up) {
+	private BufferedImage display(boolean face_up) {
 
 		if (face_up == true) {
 			// Clubs

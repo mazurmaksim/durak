@@ -55,23 +55,23 @@ public class Game implements Runnable {
 		// Draw Here
 		
 		//Player 1 cards
-		g.drawImage(player.getCards().get(0).display(true), 730-50, 700, null);
-		g.drawImage(player.getCards().get(1).display(true), 760-50, 700, null);
-		g.drawImage(player.getCards().get(2).display(true), 790-50, 700, null);
-		g.drawImage(player.getCards().get(3).display(true), 820-50, 700, null);
-		g.drawImage(player.getCards().get(4).display(true), 850-50, 700, null);
-		g.drawImage(player.getCards().get(5).display(true), 880-50, 700, null);
+		g.drawImage(player.getCards().get(0).faceUp(), 730-50, 700, null);
+		g.drawImage(player.getCards().get(1).faceUp(), 760-50, 700, null);
+		g.drawImage(player.getCards().get(2).faceUp(), 790-50, 700, null);
+		g.drawImage(player.getCards().get(3).faceUp(), 820-50, 700, null);
+		g.drawImage(player.getCards().get(4).faceUp(), 850-50, 700, null);
+		g.drawImage(player.getCards().get(5).faceUp(), 880-50, 700, null);
 
 		//Player 2 Cards
-		g.drawImage(comp.getCards().get(0).display(false), 730-50, 10, null);
-		g.drawImage(comp.getCards().get(1).display(false), 760-50, 10, null);
-		g.drawImage(comp.getCards().get(2).display(false), 790-50, 10, null);
-		g.drawImage(comp.getCards().get(3).display(false), 820-50, 10, null);
-		g.drawImage(comp.getCards().get(4).display(false), 850-50, 10, null);
-		g.drawImage(comp.getCards().get(5).display(false), 880-50, 10, null);
+		g.drawImage(comp.getCards().get(0).faceDoWn(), 730-50, 10, null);
+		g.drawImage(comp.getCards().get(1).faceDoWn(), 760-50, 10, null);
+		g.drawImage(comp.getCards().get(2).faceDoWn(), 790-50, 10, null);
+		g.drawImage(comp.getCards().get(3).faceDoWn(), 820-50, 10, null);
+		g.drawImage(comp.getCards().get(4).faceDoWn(), 850-50, 10, null);
+		g.drawImage(comp.getCards().get(5).faceDoWn(), 880-50, 10, null);
 		
 		//Trump card
-		g.drawImage(trump.display(true), 10, 350, null);
+		g.drawImage(trump.faceUp(), 10, 350, null);
 		
 		
 		//End Draw

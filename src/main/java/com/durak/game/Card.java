@@ -1,6 +1,10 @@
 package com.durak.game;
 
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+
 import com.durak.game.gfx.ImageLoader;
 
 public class Card {
@@ -239,6 +243,18 @@ public class Card {
 
 	}
 
+	 public BufferedImage rotateCard(BufferedImage card) throws IOException,InterruptedException{
+	        
+		 AffineTransform tx = new AffineTransform();
+		 tx.translate(card.getHeight() / 2, card.getWidth() / 2);
+		 tx.translate(-card.getWidth() / 2, -card.getHeight() / 2);
+		 AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+		 BufferedImage newImage =new BufferedImage(card.getHeight(), card.getWidth(), card.getType());
+		 op.filter(card, newImage);
+	        return newImage;
+	    }
+	
+	
 	public String toString() {
 
 		String strSuit = "";

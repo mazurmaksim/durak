@@ -18,6 +18,7 @@ public class Game implements Runnable {
 	private Player comp;
 	private Dealer dlr;
 	private Card trump;
+	private Table table;
 	
 	public Game(String title, int width, int height) {
 
@@ -38,6 +39,7 @@ public class Game implements Runnable {
 		dlr.dealCards(comp);
 		dlr.dealCards(player);
 		trump = dlr.trumpCard();
+		table = new Table();
 		System.out.println(deck.size());
 	}
 	
@@ -54,21 +56,22 @@ public class Game implements Runnable {
 		g.clearRect(0, 0, width, height);
 		// Draw Here
 		
+		g.drawImage(table.drawTable(),0,0, null);
 		//Player 1 cards
-		g.drawImage(player.getCards().get(0).faceUp(), 730-50, 700, null);
-		g.drawImage(player.getCards().get(1).faceUp(), 760-50, 700, null);
-		g.drawImage(player.getCards().get(2).faceUp(), 790-50, 700, null);
-		g.drawImage(player.getCards().get(3).faceUp(), 820-50, 700, null);
-		g.drawImage(player.getCards().get(4).faceUp(), 850-50, 700, null);
-		g.drawImage(player.getCards().get(5).faceUp(), 880-50, 700, null);
+		g.drawImage(player.getCards().get(0).faceUp(), 730-250, 700, null);
+		g.drawImage(player.getCards().get(1).faceUp(), 760-250, 700, null);
+		g.drawImage(player.getCards().get(2).faceUp(), 790-250, 700, null);
+		g.drawImage(player.getCards().get(3).faceUp(), 820-250, 700, null);
+		g.drawImage(player.getCards().get(4).faceUp(), 850-250, 700, null);
+		g.drawImage(player.getCards().get(5).faceUp(), 880-250, 700, null);
 
 		//Player 2 Cards
-		g.drawImage(comp.getCards().get(0).faceDoWn(), 730-50, 10, null);
-		g.drawImage(comp.getCards().get(1).faceDoWn(), 760-50, 10, null);
-		g.drawImage(comp.getCards().get(2).faceDoWn(), 790-50, 10, null);
-		g.drawImage(comp.getCards().get(3).faceDoWn(), 820-50, 10, null);
-		g.drawImage(comp.getCards().get(4).faceDoWn(), 850-50, 10, null);
-		g.drawImage(comp.getCards().get(5).faceDoWn(), 880-50, 10, null);
+		g.drawImage(comp.getCards().get(0).faceDoWn(), 730-250, 10, null);
+		g.drawImage(comp.getCards().get(1).faceDoWn(), 760-250, 10, null);
+		g.drawImage(comp.getCards().get(2).faceDoWn(), 790-250, 10, null);
+		g.drawImage(comp.getCards().get(3).faceDoWn(), 820-250, 10, null);
+		g.drawImage(comp.getCards().get(4).faceDoWn(), 850-250, 10, null);
+		g.drawImage(comp.getCards().get(5).faceDoWn(), 880-250, 10, null);
 		
 		//Trump card
 		g.drawImage(trump.faceUp(), 10, 350, null);

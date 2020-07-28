@@ -1,15 +1,17 @@
 package com.durak.game;
 
+import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+import com.durak.game.entities.Entity;
 import com.durak.game.gfx.ImageLoader;
 
-public class Card {
+public class Card extends Entity {
 
-	private static final int WIDTH = 202, HEIGHT = 281;
+	public static final int WIDTH = 202, HEIGHT = 281;
 
 	// rang
 	public static final int SIX = 6;
@@ -32,9 +34,12 @@ public class Card {
 	public int rang;
 	public int suit;
 	public boolean face_up = false;
+	private float x, y;
 
-	public Card(int suit, int rang) {
-
+	public Card(int suit, int rang, float x, float y) {
+		super(x, y);
+		this.x = x;
+		this.y = y;
 		this.rang = rang;
 		this.suit = suit;
 	}
@@ -223,11 +228,10 @@ public class Card {
 
 				return sheet.crop(1616, 843, WIDTH, HEIGHT);
 			}
-		}
-		else if(face_up == false) {
-			
+		} else if (face_up == false) {
+
 			return sheet.crop(1616 + 202, 0, WIDTH, HEIGHT);
-			
+
 		}
 		return null;
 	}
@@ -243,18 +247,17 @@ public class Card {
 
 	}
 
-	 public BufferedImage rotateCard(BufferedImage card) throws IOException,InterruptedException{
-	        
-		 AffineTransform tx = new AffineTransform();
-		 tx.translate(card.getHeight() / 2, card.getWidth() / 2);
-		 tx.translate(-card.getWidth() / 2, -card.getHeight() / 2);
-		 AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-		 BufferedImage newImage =new BufferedImage(card.getHeight(), card.getWidth(), card.getType());
-		 op.filter(card, newImage);
-	        return newImage;
-	    }
-	
-	
+	public BufferedImage rotateCard(BufferedImage card) throws IOException, InterruptedException {
+
+		AffineTransform tx = new AffineTransform();
+		tx.translate(card.getHeight() / 2, card.getWidth() / 2);
+		tx.translate(-card.getWidth() / 2, -card.getHeight() / 2);
+		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+		BufferedImage newImage = new BufferedImage(card.getHeight(), card.getWidth(), card.getType());
+		op.filter(card, newImage);
+		return newImage;
+	}
+
 	public String toString() {
 
 		String strSuit = "";
@@ -306,6 +309,29 @@ public class Card {
 
 		return " <<== " + strSuit + " " + strRang + " ==>> " + "\n";
 
+	}
+	
+	public float getX() {
+		return x;
+		
+	}
+	
+	public float getY() {
+		return y;
+		
+	}
+	
+
+	@Override
+	public void tick() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		g.drawImage(this.faceUp(), (int) x + 50, (int) y, null);
 	}
 
 }

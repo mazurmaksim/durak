@@ -1,14 +1,23 @@
-package com.durak.game;
+package com.durak.game.entities.creatures;
 
+import java.awt.Graphics;
 import java.util.Random;
 
-public class Dealer {
+import com.durak.game.Card;
+import com.durak.game.Deck;
+import com.durak.game.entities.Entity;
+
+public class Dealer extends Entity{
 	private static final int NUM_OF_CARDS = 6;
 	private Deck deck;
 	private Random rnd;
 	private Card trump;// козырная карта
+	private float x,y;
 	
-	public Dealer(Deck deck) {
+	public Dealer(Deck deck, float x, float y) {
+		super(x,y);
+		this.x = x;
+		this.y = y;
 		this.deck = deck;
 		rnd = new Random();
 	}
@@ -58,6 +67,16 @@ public class Dealer {
 		trump =  deck.getDeck().getLast();
 		return trump;
 		
+	}
+
+	@Override
+	public void tick() {
+		
+	}
+
+	@Override
+	public void render(Graphics g) {
+		g.drawImage(trump.faceUp(), (int)x, (int)y, null);
 	}
 
 }

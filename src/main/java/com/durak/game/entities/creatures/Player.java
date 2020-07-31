@@ -16,6 +16,7 @@ public class Player extends Creature {
 	private Card card;
 	private float x, y;
 	private Deck deck;
+	private Card[] selectedCard;
 
 	private Player player;
 	private boolean faceup = false;
@@ -31,6 +32,7 @@ public class Player extends Creature {
 		this.faceup = faceup;
 		this.game = game;
 		this.deck = deck;
+		selectedCard = new Card[1];
 
 	}
 
@@ -121,6 +123,12 @@ public class Player extends Creature {
 //			x -= 3;
 //		}
 
+		if (game.getKeyManager().enter) {
+			if (selectedCard[0] != null) {
+				selectedCard[0].setY(350);
+			}
+		}
+
 		if (game.getKeyManager().right) {
 
 			if (i > 0) {
@@ -129,13 +137,26 @@ public class Player extends Creature {
 			}
 			if (i < cards.size()) {
 				cards.get(i).setY(tmpY);
+				SelectCard(cards.get(i));
 				i++;
+				try {
+					Thread.currentThread();
+					Thread.sleep(300);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 
 			} else {
 				i = 0;
 			}
 
 		}
+
+	}
+
+	public void SelectCard(Card card) {
+
+		selectedCard[0] = card;
 
 	}
 

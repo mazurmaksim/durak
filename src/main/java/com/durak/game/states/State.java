@@ -7,7 +7,8 @@ import com.durak.game.Game;
 public abstract class State {
 
 	private static State currenState = null;
-
+	protected Game game;
+	
 	public static void setState(State state) {
 		currenState = state;
 
@@ -18,8 +19,6 @@ public abstract class State {
 		return currenState;
 
 	}
-
-	protected Game game;
 
 	public State(Game game) {
 		this.game = game;

@@ -3,6 +3,7 @@ package com.durak.game;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import com.durak.game.input.KeyManager;
 import com.durak.game.input.MauseManager;
 import com.durak.game.states.GameState;
 import com.durak.game.states.State;
@@ -24,6 +25,7 @@ public class Game implements Runnable {
 	
 	//Input
 	private MauseManager mouseManager;
+	private KeyManager keyManager;
 	
 	public Game(String title, int width, int height) {
 
@@ -31,11 +33,17 @@ public class Game implements Runnable {
 		this.height = height;
 		this.title = title;
 		mouseManager = new MauseManager();
+		keyManager = new KeyManager();
 
 	}
 
+	
 	private void init() {
 		display = new Display(title, width, height);
+		
+		display.getFrame().addKeyListener(keyManager);
+		
+		
 		display.getFrame().addMouseListener(mouseManager);
 		display.getFrame().addMouseMotionListener(mouseManager);
 		display.getCanvas().addMouseListener(mouseManager);
@@ -49,7 +57,7 @@ public class Game implements Runnable {
 	}
 
 	private void tick() {
-		
+		keyManager.tick();
 		if(State.getState() !=null) {
 			State.getState().tick();
 		}
@@ -111,5 +119,10 @@ public class Game implements Runnable {
 		
 		return mouseManager;
 	}
+	
+	public KeyManager getKeyManager() {
+		return keyManager;
+	}
+	
 
 }

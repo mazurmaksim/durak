@@ -54,6 +54,15 @@ public class Card extends Entity {
 		return display(false);
 	}
 
+	
+	public void setX(float x) {
+		this.x = x;
+	}
+
+	public void setY(float y) {
+		this.y = y;
+	}
+
 	private BufferedImage display(boolean face_up) {
 
 		if (face_up == true) {
@@ -330,7 +339,7 @@ public class Card extends Entity {
 
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
+
 		g.drawImage(this.faceUp(), (int) x + 50, (int) y, null);
 	}
 

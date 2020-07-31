@@ -14,7 +14,8 @@ public class Player extends Creature {
 	private String name;
 	private Card card;
 	private float x, y;
-
+	private Deck deck;
+	
 	private Player player;
 	private boolean faceup = false;
 
@@ -28,6 +29,7 @@ public class Player extends Creature {
 		this.y = y;
 		this.faceup = faceup;
 		this.game = game;
+		this.deck = deck;
 
 	}
 
@@ -94,18 +96,27 @@ public class Player extends Creature {
 
 	@Override
 	public void tick() {
-		for (int i = 0; i < getCards().size(); i++) {
-			System.out.println(game.getMauseManager().getMouseX());
-			if (game.getMauseManager().isLeftPressed()
-					&& game.getMauseManager().getMouseX() ==  getCards().get(i).getX()
-					&& game.getMauseManager().getMouseY() ==  getCards().get(i).getY()) {
-				//getCards().get(i).face_up = false;
-				
-			}
+		if(game.getKeyManager().up) {
+			y -= 3;
 		}
 
-	}
+		if(game.getKeyManager().down) {
+			y += 3;
+		}
+		if(game.getKeyManager().left) {
+			x -= 3;
+		}
+		
+		if(game.getKeyManager().right) {
+			x += 3;
 
+		}
+		
+
+
+	}
+	
+	
 	@Override
 	public void render(Graphics g) {
 

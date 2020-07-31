@@ -22,6 +22,8 @@ public class Display {
 		createDisplay();
 
 	}
+	
+	
 
 	private void createDisplay() {
 		frame = new JFrame(title);

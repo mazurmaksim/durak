@@ -49,11 +49,15 @@ public class Dealer extends Entity{
 		
 		
 		for (int i = 0; i < NUM_OF_CARDS; i++) {
+			
 			player.putCard(getCard(i));
-
+			
 		}
+		
 	
 	}
+	
+
 	
 	public Card getTrump() {
 

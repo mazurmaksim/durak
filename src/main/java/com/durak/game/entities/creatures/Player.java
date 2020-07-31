@@ -10,12 +10,13 @@ import com.durak.game.Table;
 
 public class Player extends Creature {
 
+	public static final float CARD_UPLIFT = 50;
 	public ArrayList<Card> cards;
 	private String name;
 	private Card card;
 	private float x, y;
 	private Deck deck;
-	
+
 	private Player player;
 	private boolean faceup = false;
 
@@ -55,9 +56,19 @@ public class Player extends Creature {
 	}
 
 	public void putCard(Card card) {
-
+		card.setX(x);
+		card.setY(y);
 		cards.add(card);
 
+	}
+
+	public void setCoords() {
+
+		for (int i = 0; i < cards.size(); i++) {
+			cards.get(i).setX(x);
+			cards.get(i).setY(y);
+
+		}
 	}
 
 	public Card getCard() {
@@ -94,37 +105,50 @@ public class Player extends Creature {
 		return tmp;
 	}
 
+	int i = 0;
+
 	@Override
 	public void tick() {
-		if(game.getKeyManager().up) {
-			y -= 3;
-		}
+		float tmpY = y - CARD_UPLIFT;
+//		if (game.getKeyManager().up) {
+//			y -= 3;
+//		}
+//
+//		if (game.getKeyManager().down) {
+//			y += 3;
+//		}
+//		if (game.getKeyManager().left) {
+//			x -= 3;
+//		}
 
-		if(game.getKeyManager().down) {
-			y += 3;
-		}
-		if(game.getKeyManager().left) {
-			x -= 3;
-		}
-		
-		if(game.getKeyManager().right) {
-			x += 3;
+		if (game.getKeyManager().right) {
+
+			if (i > 0) {
+
+				cards.get(i - 1).setY(y);
+			}
+			if (i < cards.size()) {
+				cards.get(i).setY(tmpY);
+				i++;
+
+			} else {
+				i = 0;
+			}
 
 		}
-		
-
 
 	}
-	
-	
+
 	@Override
 	public void render(Graphics g) {
 
 		// Player 1 cards
 		float playerXcoord = 30;
 		if (faceup == true) {
+
 			for (int i = 0; i < getCards().size(); i++) {
-				g.drawImage(getCards().get(i).faceUp(), (int) (x + playerXcoord), (int) y, null);
+				cards.get(i).setX(playerXcoord + x);
+				cards.get(i).render(g);
 				playerXcoord += 30;
 			}
 		} else
@@ -133,6 +157,14 @@ public class Player extends Creature {
 				playerXcoord += 30;
 			}
 		playerXcoord = 30;
+	}
+
+	public void setX(float x) {
+		this.x = x;
+	}
+
+	public void setY(float y) {
+		this.y = y;
 	}
 
 }

@@ -7,6 +7,7 @@ import com.durak.game.entities.Entity;
 
 public class Deck extends Entity {
 
+	private Game game;
 	public LinkedList<Card> deck;
 	private float x, y;
 
@@ -26,11 +27,12 @@ public class Deck extends Entity {
 		this.y = y;
 	}
 
-	public Deck(float x, float y) {
+	public Deck(Game game, float x, float y) {
 
 		super(x, y);
 		this.x = x;
 		this.y = y;
+		this.game = game;
 
 	}
 
@@ -42,48 +44,48 @@ public class Deck extends Entity {
 		deck = new LinkedList<Card>();
 
 		// Clubs
-		deck.add(new Card(Card.CLUBS, Card.SIX, x, y));
-		deck.add(new Card(Card.CLUBS, Card.SEVEN, x, y));
-		deck.add(new Card(Card.CLUBS, Card.EIGHT, x, y));
-		deck.add(new Card(Card.CLUBS, Card.NINE, x, y));
-		deck.add(new Card(Card.CLUBS, Card.TEN, x, y));
-		deck.add(new Card(Card.CLUBS, Card.JACK, x, y));
-		deck.add(new Card(Card.CLUBS, Card.QUEEN, x, y));
-		deck.add(new Card(Card.CLUBS, Card.KING, x, y));
-		deck.add(new Card(Card.CLUBS, Card.ACE, x, y));
+		deck.add(new Card(game,Card.CLUBS, Card.SIX, x, y));
+		deck.add(new Card(game,Card.CLUBS, Card.SEVEN, x, y));
+		deck.add(new Card(game,Card.CLUBS, Card.EIGHT, x, y));
+		deck.add(new Card(game,Card.CLUBS, Card.NINE, x, y));
+		deck.add(new Card(game,Card.CLUBS, Card.TEN, x, y));
+		deck.add(new Card(game,Card.CLUBS, Card.JACK, x, y));
+		deck.add(new Card(game,Card.CLUBS, Card.QUEEN, x, y));
+		deck.add(new Card(game,Card.CLUBS, Card.KING, x, y));
+		deck.add(new Card(game,Card.CLUBS, Card.ACE, x, y));
 
 		// Spades
-		deck.add(new Card(Card.SPADES, Card.SIX, x, y));
-		deck.add(new Card(Card.SPADES, Card.SEVEN, x, y));
-		deck.add(new Card(Card.SPADES, Card.EIGHT, x, y));
-		deck.add(new Card(Card.SPADES, Card.NINE, x, y));
-		deck.add(new Card(Card.SPADES, Card.TEN, x, y));
-		deck.add(new Card(Card.SPADES, Card.JACK, x, y));
-		deck.add(new Card(Card.SPADES, Card.QUEEN, x, y));
-		deck.add(new Card(Card.SPADES, Card.KING, x, y));
-		deck.add(new Card(Card.SPADES, Card.ACE, x, y));
+		deck.add(new Card(game,Card.SPADES, Card.SIX, x, y));
+		deck.add(new Card(game,Card.SPADES, Card.SEVEN, x, y));
+		deck.add(new Card(game,Card.SPADES, Card.EIGHT, x, y));
+		deck.add(new Card(game,Card.SPADES, Card.NINE, x, y));
+		deck.add(new Card(game,Card.SPADES, Card.TEN, x, y));
+		deck.add(new Card(game,Card.SPADES, Card.JACK, x, y));
+		deck.add(new Card(game,Card.SPADES, Card.QUEEN, x, y));
+		deck.add(new Card(game,Card.SPADES, Card.KING, x, y));
+		deck.add(new Card(game,Card.SPADES, Card.ACE, x, y));
 
 		// Hearts
-		deck.add(new Card(Card.HEARTS, Card.SIX, x, y));
-		deck.add(new Card(Card.HEARTS, Card.SEVEN, x, y));
-		deck.add(new Card(Card.HEARTS, Card.EIGHT, x, y));
-		deck.add(new Card(Card.HEARTS, Card.NINE, x, y));
-		deck.add(new Card(Card.HEARTS, Card.TEN, x, y));
-		deck.add(new Card(Card.HEARTS, Card.JACK, x, y));
-		deck.add(new Card(Card.HEARTS, Card.QUEEN, x, y));
-		deck.add(new Card(Card.HEARTS, Card.KING, x, y));
-		deck.add(new Card(Card.HEARTS, Card.ACE, x, y));
+		deck.add(new Card(game,Card.HEARTS, Card.SIX, x, y));
+		deck.add(new Card(game,Card.HEARTS, Card.SEVEN, x, y));
+		deck.add(new Card(game,Card.HEARTS, Card.EIGHT, x, y));
+		deck.add(new Card(game,Card.HEARTS, Card.NINE, x, y));
+		deck.add(new Card(game,Card.HEARTS, Card.TEN, x, y));
+		deck.add(new Card(game,Card.HEARTS, Card.JACK, x, y));
+		deck.add(new Card(game,Card.HEARTS, Card.QUEEN, x, y));
+		deck.add(new Card(game,Card.HEARTS, Card.KING, x, y));
+		deck.add(new Card(game,Card.HEARTS, Card.ACE, x, y));
 
 		// Diamonds
-		deck.add(new Card(Card.DIAMONDS, Card.SIX, x, y));
-		deck.add(new Card(Card.DIAMONDS, Card.SEVEN, x, y));
-		deck.add(new Card(Card.DIAMONDS, Card.EIGHT, x, y));
-		deck.add(new Card(Card.DIAMONDS, Card.NINE, x, y));
-		deck.add(new Card(Card.DIAMONDS, Card.TEN, x, y));
-		deck.add(new Card(Card.DIAMONDS, Card.JACK, x, y));
-		deck.add(new Card(Card.DIAMONDS, Card.QUEEN, x, y));
-		deck.add(new Card(Card.DIAMONDS, Card.KING, x, y));
-		deck.add(new Card(Card.DIAMONDS, Card.ACE, x, y));
+		deck.add(new Card(game,Card.DIAMONDS, Card.SIX, x, y));
+		deck.add(new Card(game,Card.DIAMONDS, Card.SEVEN, x, y));
+		deck.add(new Card(game,Card.DIAMONDS, Card.EIGHT, x, y));
+		deck.add(new Card(game,Card.DIAMONDS, Card.NINE, x, y));
+		deck.add(new Card(game,Card.DIAMONDS, Card.TEN, x, y));
+		deck.add(new Card(game,Card.DIAMONDS, Card.JACK, x, y));
+		deck.add(new Card(game,Card.DIAMONDS, Card.QUEEN, x, y));
+		deck.add(new Card(game,Card.DIAMONDS, Card.KING, x, y));
+		deck.add(new Card(game,Card.DIAMONDS, Card.ACE, x, y));
 
 	}
 

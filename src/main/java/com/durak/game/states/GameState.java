@@ -23,7 +23,7 @@ public class GameState extends State {
 		super(game);
 		player = new Player(game,"Maks", deck, true, 480, 755);
 		comp = new Player(game, "Comp", deck, false, 480, 10);
-		deck = new Deck(80, 350);
+		deck = new Deck(game,80, 350);
 		deck.buildCards();
 		dlr = new Dealer(deck, 200, 350);
 		dlr.shuffleDeck();
@@ -43,6 +43,7 @@ public class GameState extends State {
 	public void render(Graphics g) {
 		
 		table.render(g);
+		dlr.render(g);
 		player.render(g);
 		trump.render(g);
 		deck.render(g);

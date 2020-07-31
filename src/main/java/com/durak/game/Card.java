@@ -35,13 +35,15 @@ public class Card extends Entity {
 	public int suit;
 	public boolean face_up = false;
 	private float x, y;
-
-	public Card(int suit, int rang, float x, float y) {
+	private Game game;
+	
+	public Card(Game game, int suit, int rang, float x, float y) {
 		super(x, y);
 		this.x = x;
 		this.y = y;
 		this.rang = rang;
 		this.suit = suit;
+		this.game = game;
 	}
 
 	public BufferedImage faceUp() {
@@ -256,17 +258,9 @@ public class Card extends Entity {
 
 	}
 
-	public BufferedImage rotateCard(BufferedImage card) throws IOException, InterruptedException {
 
-		AffineTransform tx = new AffineTransform();
-		tx.translate(card.getHeight() / 2, card.getWidth() / 2);
-		tx.translate(-card.getWidth() / 2, -card.getHeight() / 2);
-		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-		BufferedImage newImage = new BufferedImage(card.getHeight(), card.getWidth(), card.getType());
-		op.filter(card, newImage);
-		return newImage;
-	}
-
+	
+	
 	public String toString() {
 
 		String strSuit = "";
@@ -334,13 +328,14 @@ public class Card extends Entity {
 	@Override
 	public void tick() {
 		// TODO Auto-generated method stub
-
+		
+		
 	}
 
 	@Override
 	public void render(Graphics g) {
 
-		g.drawImage(this.faceUp(), (int) x + 50, (int) y, null);
+		g.drawImage(this.faceUp(), (int) x, (int) y, null);
 	}
 
 }

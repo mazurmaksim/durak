@@ -22,14 +22,6 @@ public class Card extends Entity {
 	public static final int TEN = 10;
 	public static final int JACK = 11;
 
-	public boolean isFace_up() {
-		return face_up;
-	}
-
-	public void setFace_up(boolean face_up) {
-		this.face_up = face_up;
-	}
-
 	public static final int QUEEN = 12;
 	public static final int KING = 13;
 	public static final int ACE = 14;
@@ -57,14 +49,22 @@ public class Card extends Entity {
 		this.face_up = face_up;
 	}
 
+	public boolean isFace_up() {
+		return face_up;
+	}
+
+	public void setFace_up(boolean face_up) {
+		this.face_up = face_up;
+	}
+	
 	public BufferedImage faceUp() {
 
-		return display(true);
+		return display(true, this);
 	}
 
 	public BufferedImage faceDoWn() {
 
-		return display(false);
+		return display(false, this);
 	}
 
 	public void setX(float x) {
@@ -75,177 +75,178 @@ public class Card extends Entity {
 		this.y = y;
 	}
 
-	private BufferedImage display(boolean face_up) {
+	
+	public BufferedImage display(boolean face_up, Card card) {
 
 		if (face_up == true) {
 			// Clubs
-			if (rang == SIX && suit == CLUBS) {
+			if (card.getRang() == SIX && card.getSuit() == CLUBS) {
 				return sheet.crop(0, 0, WIDTH, HEIGHT);
 			}
 
-			if (rang == SEVEN && suit == CLUBS) {
+			if (card.getRang() == SEVEN && card.getSuit() == CLUBS) {
 				return sheet.crop(202, 0, WIDTH, HEIGHT);
 			}
 
-			if (rang == EIGHT && suit == CLUBS) {
+			if (card.getRang() == EIGHT && card.getSuit() == CLUBS) {
 				return sheet.crop(404, 0, WIDTH, HEIGHT);
 			}
 
-			if (rang == NINE && suit == CLUBS) {
+			if (card.getRang() == NINE && card.getSuit() == CLUBS) {
 
 				return sheet.crop(606, 0, WIDTH, HEIGHT);
 			}
 
-			if (rang == TEN && suit == CLUBS) {
+			if (card.getRang() == TEN && card.getSuit() == CLUBS) {
 
 				return sheet.crop(808, 0, WIDTH, HEIGHT);
 			}
 
-			if (rang == JACK && suit == CLUBS) {
+			if (card.getRang() == JACK && card.getSuit() == CLUBS) {
 
 				return sheet.crop(1010, 0, WIDTH, HEIGHT);
 			}
 
-			if (rang == QUEEN && suit == CLUBS) {
+			if (card.getRang() == QUEEN && card.getSuit() == CLUBS) {
 
 				return sheet.crop(1212, 0, WIDTH, HEIGHT);
 			}
 
-			if (rang == KING && suit == CLUBS) {
+			if (card.getRang() == KING && card.getSuit() == CLUBS) {
 
 				return sheet.crop(1414, 0, WIDTH, HEIGHT);
 			}
 
-			if (rang == ACE && suit == CLUBS) {
+			if (card.getRang() == ACE && card.getSuit() == CLUBS) {
 
 				return sheet.crop(1616, 0, WIDTH, HEIGHT);
 			}
 
 			// Spades
-			if (rang == SIX && suit == SPADES) {
+			if (card.getRang() == SIX && card.getSuit() == SPADES) {
 				return sheet.crop(0, 281, WIDTH, HEIGHT);
 			}
 
-			if (rang == SEVEN && suit == SPADES) {
+			if (card.getRang() == SEVEN && card.getSuit() == SPADES) {
 				return sheet.crop(202, 281, WIDTH, HEIGHT);
 			}
 
-			if (rang == EIGHT && suit == SPADES) {
+			if (card.getRang() == EIGHT && card.getSuit() == SPADES) {
 				return sheet.crop(404, 281, WIDTH, HEIGHT);
 			}
 
-			if (rang == NINE && suit == SPADES) {
+			if (card.getRang() == NINE && card.getSuit() == SPADES) {
 
 				return sheet.crop(606, 281, WIDTH, HEIGHT);
 			}
 
-			if (rang == TEN && suit == SPADES) {
+			if (card.getRang() == TEN && card.getSuit() == SPADES) {
 
 				return sheet.crop(808, 281, WIDTH, HEIGHT);
 			}
 
-			if (rang == JACK && suit == SPADES) {
+			if (card.getRang() == JACK && card.getSuit() == SPADES) {
 
 				return sheet.crop(1010, 281, WIDTH, HEIGHT);
 			}
 
-			if (rang == QUEEN && suit == SPADES) {
+			if (card.getRang() == QUEEN && card.getSuit() == SPADES) {
 
 				return sheet.crop(1212, 281, WIDTH, HEIGHT);
 			}
 
-			if (rang == KING && suit == SPADES) {
+			if (card.getRang() == KING && card.getSuit() == SPADES) {
 
 				return sheet.crop(1414, 281, WIDTH, HEIGHT);
 			}
 
-			if (rang == ACE && suit == SPADES) {
+			if (card.getRang() == ACE && card.getSuit() == SPADES) {
 
 				return sheet.crop(1616, 281, WIDTH, HEIGHT);
 			}
 
 			// Hearts
-			if (rang == SIX && suit == HEARTS) {
+			if (card.getRang() == SIX && card.getSuit() == HEARTS) {
 				return sheet.crop(0, 562, WIDTH, HEIGHT);
 			}
 
-			if (rang == SEVEN && suit == HEARTS) {
+			if (card.getRang() == SEVEN && card.getSuit() == HEARTS) {
 				return sheet.crop(202, 562, WIDTH, HEIGHT);
 			}
 
-			if (rang == EIGHT && suit == HEARTS) {
+			if (card.getRang() == EIGHT && card.getSuit() == HEARTS) {
 				return sheet.crop(404, 562, WIDTH, HEIGHT);
 			}
 
-			if (rang == NINE && suit == HEARTS) {
+			if (card.getRang() == NINE && card.getSuit() == HEARTS) {
 
 				return sheet.crop(606, 562, WIDTH, HEIGHT);
 			}
 
-			if (rang == TEN && suit == HEARTS) {
+			if (card.getRang() == TEN && card.getSuit() == HEARTS) {
 
 				return sheet.crop(808, 562, WIDTH, HEIGHT);
 			}
 
-			if (rang == JACK && suit == HEARTS) {
+			if (card.getRang() == JACK && card.getSuit() == HEARTS) {
 
 				return sheet.crop(1010, 562, WIDTH, HEIGHT);
 			}
 
-			if (rang == QUEEN && suit == HEARTS) {
+			if (card.getRang() == QUEEN && card.getSuit() == HEARTS) {
 
 				return sheet.crop(1212, 562, WIDTH, HEIGHT);
 			}
 
-			if (rang == KING && suit == HEARTS) {
+			if (card.getRang() == KING && card.getSuit() == HEARTS) {
 
 				return sheet.crop(1414, 562, WIDTH, HEIGHT);
 			}
 
-			if (rang == ACE && suit == HEARTS) {
+			if (card.getRang() == ACE && card.getSuit() == HEARTS) {
 
 				return sheet.crop(1616, 562, WIDTH, HEIGHT);
 			}
 
 			// Diamonds
-			if (rang == SIX && suit == DIAMONDS) {
+			if (card.getRang() == SIX && card.getSuit() == DIAMONDS) {
 				return sheet.crop(0, 843, WIDTH, HEIGHT);
 			}
 
-			if (rang == SEVEN && suit == DIAMONDS) {
+			if (card.getRang() == SEVEN && card.getSuit() == DIAMONDS) {
 				return sheet.crop(202, 843, WIDTH, HEIGHT);
 			}
 
-			if (rang == EIGHT && suit == DIAMONDS) {
+			if (card.getRang() == EIGHT && card.getSuit() == DIAMONDS) {
 				return sheet.crop(404, 843, WIDTH, HEIGHT);
 			}
 
-			if (rang == NINE && suit == DIAMONDS) {
+			if (card.getRang() == NINE && card.getSuit() == DIAMONDS) {
 
 				return sheet.crop(606, 843, WIDTH, HEIGHT);
 			}
 
-			if (rang == TEN && suit == DIAMONDS) {
+			if (card.getRang() == TEN && card.getSuit() == DIAMONDS) {
 
 				return sheet.crop(808, 843, WIDTH, HEIGHT);
 			}
 
-			if (rang == JACK && suit == DIAMONDS) {
+			if (card.getRang() == JACK && card.getSuit() == DIAMONDS) {
 
 				return sheet.crop(1010, 843, WIDTH, HEIGHT);
 			}
 
-			if (rang == QUEEN && suit == DIAMONDS) {
+			if (card.getRang() == QUEEN && card.getSuit() == DIAMONDS) {
 
 				return sheet.crop(1212, 843, WIDTH, HEIGHT);
 			}
 
-			if (rang == KING && suit == DIAMONDS) {
+			if (card.getRang() == KING && card.getSuit() == DIAMONDS) {
 
 				return sheet.crop(1414, 843, WIDTH, HEIGHT);
 			}
 
-			if (rang == ACE && suit == DIAMONDS) {
+			if (card.getRang() == ACE && card.getSuit() == DIAMONDS) {
 
 				return sheet.crop(1616, 843, WIDTH, HEIGHT);
 			}
@@ -333,17 +334,17 @@ public class Card extends Entity {
 
 	@Override
 	public void tick() {
-
+		this.tick();
 	}
 
 	@Override
 	public void render(Graphics g) {
 		if (face_up) {
-			g.drawImage(this.faceUp(), (int) x, (int) y, null);
+			g.drawImage(faceUp(), (int) x, (int) y, null);
 		}
 		if (!face_up) {
 		
-		g.drawImage(this.faceDoWn(), (int) x, (int) y, null);
+		g.drawImage(faceDoWn(), (int) x, (int) y, null);
 		}
 	}
 

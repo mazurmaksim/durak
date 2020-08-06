@@ -1,22 +1,23 @@
 package com.durak.game.entities.creatures;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.Random;
 
 import com.durak.game.Card;
 import com.durak.game.Deck;
 import com.durak.game.entities.Entity;
 
-public class Dealer extends Entity {
+public class Dealer extends Entity{
 	private static final int NUM_OF_CARDS = 6;
+	public ArrayList<Card> cards;
 	private Deck deck;
 	private Random rnd;
 	private Card trump;// козырная карта
-	private float x, y;
-	private Player player;
-
+	private float x,y;
+	
 	public Dealer(Deck deck, float x, float y) {
-		super(x, y);
+		super(x,y);
 		this.x = x;
 		this.y = y;
 		this.deck = deck;
@@ -36,7 +37,7 @@ public class Dealer extends Entity {
 
 	}
 // Берется одна карта по индеку, по умолчанию карта сверху колоды.
-
+	
 	public Card getCard(int index) {
 
 		Card tmpCard = deck.getDeck().get(index);
@@ -47,34 +48,46 @@ public class Dealer extends Entity {
 
 	// Раздача карт по 6
 	public void dealCards(Player player) {
-
+		
+		
 		for (int i = 0; i < NUM_OF_CARDS; i++) {
-				player.putCard(getCard(i));
+			
+			player.putCard(getCard(i));
+			
 		}
+		
+	
 	}
+	
+	public void putCard(Card card) {
+		card.setX(x);
+		card.setY(y);
+		cards.add(card);
 
+	}
+	
 	public Card getTrump() {
 
 		return trump;
-
+		
 	}
-
-	// Козырная карта берется с конца колоды
+	
+	//Козырная карта берется с конца колоды
 	public Card trumpCard() {
-
-		trump = deck.getDeck().getLast();
+		
+		trump =  deck.getDeck().getLast();
 		return trump;
-
+		
 	}
 
 	@Override
 	public void tick() {
-
+		
 	}
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(trump.faceUp(), (int) x, (int) y, null);
+		g.drawImage(trump.faceUp(), (int)x, (int)y, null);
 	}
 
 }

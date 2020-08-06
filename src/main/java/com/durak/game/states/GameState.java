@@ -1,6 +1,7 @@
 package com.durak.game.states;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import com.durak.game.Card;
 import com.durak.game.Deck;
@@ -18,21 +19,29 @@ public class GameState extends State {
 
 	private Player player;
 	private Player comp;
-
+	private ArrayList<Player> players = new ArrayList<>();
+	
 	public GameState(Game game) {
 		super(game);
 		player = new Player(game,"Maks", deck, true, 480, 755);
 		comp = new Player(game, "Comp", deck, false, 480, 10);
+		players.add(player);
+		players.add(comp);
 		deck = new Deck(game,80, 350);
 		deck.buildCards();
 		dlr = new Dealer(deck, 200, 350);
 		dlr.shuffleDeck();
-		dlr.dealCards(player);
-		dlr.dealCards(comp);
+		dlr.dealCards(players.get(0));
+		dlr.dealCards(players.get(1));
 		trump = dlr.trumpCard();
 		table = new Table(0, 0);
+		
 	}
 
+	public ArrayList<Player> getPlayers(){
+		return players;
+	}
+	
 	@Override
 	public void tick() {
 		// TODO Auto-generated method stub
@@ -41,13 +50,12 @@ public class GameState extends State {
 
 	@Override
 	public void render(Graphics g) {
-		
 		table.render(g);
 		dlr.render(g);
-		player.render(g);
+		players.get(0).render(g);
 		trump.render(g);
 		deck.render(g);
-		comp.render(g);
+		players.get(1).render(g);
 	}
 
 }

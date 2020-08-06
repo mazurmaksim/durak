@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import com.durak.game.entities.Entity;
+import com.durak.game.entities.creatures.Player;
 import com.durak.game.gfx.ImageLoader;
 
 public class Card extends Entity {
@@ -20,6 +21,15 @@ public class Card extends Entity {
 	public static final int NINE = 9;
 	public static final int TEN = 10;
 	public static final int JACK = 11;
+
+	public boolean isFace_up() {
+		return face_up;
+	}
+
+	public void setFace_up(boolean face_up) {
+		this.face_up = face_up;
+	}
+
 	public static final int QUEEN = 12;
 	public static final int KING = 13;
 	public static final int ACE = 14;
@@ -36,14 +46,15 @@ public class Card extends Entity {
 	public boolean face_up = false;
 	private float x, y;
 	private Game game;
-	
-	public Card(Game game, int suit, int rang, float x, float y) {
+
+	public Card(Game game, boolean face_up, int suit, int rang, float x, float y) {
 		super(x, y);
 		this.x = x;
 		this.y = y;
 		this.rang = rang;
 		this.suit = suit;
 		this.game = game;
+		this.face_up = face_up;
 	}
 
 	public BufferedImage faceUp() {
@@ -56,7 +67,6 @@ public class Card extends Entity {
 		return display(false);
 	}
 
-	
 	public void setX(float x) {
 		this.x = x;
 	}
@@ -258,9 +268,6 @@ public class Card extends Entity {
 
 	}
 
-
-	
-	
 	public String toString() {
 
 		String strSuit = "";
@@ -313,29 +320,31 @@ public class Card extends Entity {
 		return " <<== " + strSuit + " " + strRang + " ==>> " + "\n";
 
 	}
-	
+
 	public float getX() {
 		return x;
-		
+
 	}
-	
+
 	public float getY() {
 		return y;
-		
+
 	}
-	
 
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
-		
-		
+
 	}
 
 	@Override
 	public void render(Graphics g) {
-
-		g.drawImage(this.faceUp(), (int) x, (int) y, null);
+		if (face_up) {
+			g.drawImage(this.faceUp(), (int) x, (int) y, null);
+		}
+		if (!face_up) {
+		
+		g.drawImage(this.faceDoWn(), (int) x, (int) y, null);
+		}
 	}
 
 }

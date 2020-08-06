@@ -19,7 +19,7 @@ public class Player extends Creature {
 	private Card[] selectedCard;
 
 	private Player player;
-	private boolean faceup = false;
+	private boolean faceup;
 
 	private Game game;
 
@@ -49,6 +49,10 @@ public class Player extends Creature {
 	public String getName() {
 
 		return name;
+	}
+
+	public boolean getFaceUp() {
+		return faceup;
 	}
 
 	public ArrayList<Card> getCards() {
@@ -126,13 +130,13 @@ public class Player extends Creature {
 		if (game.getKeyManager().enter) {
 			if (selectedCard[0] != null) {
 				selectedCard[0].setY(350);
+				BeatCard(player);
 			}
 		}
 
 		if (game.getKeyManager().right) {
 
 			if (i > 0) {
-
 				cards.get(i - 1).setY(y);
 			}
 			if (i < cards.size()) {
@@ -159,25 +163,42 @@ public class Player extends Creature {
 		selectedCard[0] = card;
 
 	}
+	// Rools
 
+	public void BeatCard(Player player) {
+		if (selectedCard[0] != null) {
+			for (int i = 0; i < cards.size(); i++) {
+				if (cards.get(i).getSuit() == selectedCard[0].getSuit()
+						&& cards.get(i).getRang() > selectedCard[0].getSuit()) {
+					cards.get(i).faceUp();
+					cards.get(i).setY(340);
+				}
+
+			}
+		}
+
+	}
+
+	// End rools
 	@Override
 	public void render(Graphics g) {
 
-		// Player 1 cards
+		System.out.println(getName() + " " + faceup);
+		// Player cards
 		float playerXcoord = 30;
-		if (faceup == true) {
 
-			for (int i = 0; i < getCards().size(); i++) {
+		for (int i = 0; i < getCards().size(); i++) {
+			if (faceup) {
+				cards.get(i).setFace_up(true);
 				cards.get(i).setX(playerXcoord + x);
 				cards.get(i).render(g);
-				playerXcoord += 30;
+			} else if (!faceup) {
+				cards.get(i).setFace_up(false);
+				cards.get(i).setX(playerXcoord + x);
+				cards.get(i).render(g);
 			}
-		} else
-			for (int i = 0; i < getCards().size(); i++) {
-				g.drawImage(getCards().get(i).faceDoWn(), (int) (x + playerXcoord), (int) y, null);
-				playerXcoord += 30;
-			}
-		playerXcoord = 30;
+			playerXcoord += 30;
+		}
 	}
 
 	public void setX(float x) {

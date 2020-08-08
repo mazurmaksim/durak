@@ -1,10 +1,15 @@
 package com.durak.game.entities.creatures;
 
+import java.awt.Button;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import com.durak.game.Card;
 import com.durak.game.Deck;
+import com.durak.game.Display;
 import com.durak.game.Game;
 import com.durak.game.Table;
 
@@ -16,10 +21,13 @@ public class Player extends Creature {
 	private Card card;
 	private float x, y;
 	private Deck deck;
-	private Card[] selectedCard;
-
+	private ArrayList<Card> selectedCard;
+	private JButton take;
+	private JButton clear;
+	private JFrame display;
 	private Player player;
-	private boolean faceup;
+	private boolean faceup = false;
+	private boolean flag;
 
 	private Game game;
 
@@ -32,7 +40,7 @@ public class Player extends Creature {
 		this.faceup = faceup;
 		this.game = game;
 		this.deck = deck;
-		selectedCard = new Card[1];
+		selectedCard = new ArrayList<>();
 
 	}
 
@@ -49,10 +57,6 @@ public class Player extends Creature {
 	public String getName() {
 
 		return name;
-	}
-
-	public boolean getFaceUp() {
-		return faceup;
 	}
 
 	public ArrayList<Card> getCards() {
@@ -113,8 +117,10 @@ public class Player extends Creature {
 
 	int i = 0;
 
+	private Card tmpCard;
 	@Override
 	public void tick() {
+		
 		float tmpY = y - CARD_UPLIFT;
 //		if (game.getKeyManager().up) {
 //			y -= 3;
@@ -128,10 +134,20 @@ public class Player extends Creature {
 //		}
 
 		if (game.getKeyManager().enter) {
-			if (selectedCard[0] != null) {
-				selectedCard[0].setY(350);
-				BeatCard(player);
-			}
+			
+				if(flag) {
+					flag= false;
+				
+				//	tmpCard.setY(350);
+					
+					SelectCard(tmpCard);
+					cards.remove(tmpCard);
+					for(int i=0;i < getSelectedCard().size();i++) {
+						getSelectedCard().get(i).setY(350);
+					}
+					
+				}
+
 		}
 
 		if (game.getKeyManager().right) {
@@ -141,7 +157,8 @@ public class Player extends Creature {
 			}
 			if (i < cards.size()) {
 				cards.get(i).setY(tmpY);
-				SelectCard(cards.get(i));
+				tmpCard = cards.get(i);
+				flag = true;
 				i++;
 				try {
 					Thread.currentThread();
@@ -160,45 +177,26 @@ public class Player extends Creature {
 
 	public void SelectCard(Card card) {
 
-		selectedCard[0] = card;
-
-	}
-	// Rools
-
-	public void BeatCard(Player player) {
-		if (selectedCard[0] != null) {
-			for (int i = 0; i < cards.size(); i++) {
-				if (cards.get(i).getSuit() == selectedCard[0].getSuit()
-						&& cards.get(i).getRang() > selectedCard[0].getSuit()) {
-					cards.get(i).faceUp();
-					cards.get(i).setY(340);
-				}
-
-			}
-		}
+		selectedCard.add(card);
 
 	}
 
-	// End rools
+	public ArrayList<Card> getSelectedCard() {
+		return selectedCard;
+	}
+
 	@Override
 	public void render(Graphics g) {
 
-		System.out.println(getName() + " " + faceup);
-		// Player cards
+		// Player 1 cards
 		float playerXcoord = 30;
-
-		for (int i = 0; i < getCards().size(); i++) {
-			if (faceup) {
-				cards.get(i).setFace_up(true);
-				cards.get(i).setX(playerXcoord + x);
-				cards.get(i).render(g);
-			} else if (!faceup) {
-				cards.get(i).setFace_up(false);
-				cards.get(i).setX(playerXcoord + x);
-				cards.get(i).render(g);
-			}
+		for (int i = 0; i < this.getCards().size(); i++) {
+			this.cards.get(i).setFace_up(faceup);
+			this.cards.get(i).setX(playerXcoord + x);
+			this.cards.get(i).render(g);
 			playerXcoord += 30;
 		}
+		playerXcoord = 30;
 	}
 
 	public void setX(float x) {

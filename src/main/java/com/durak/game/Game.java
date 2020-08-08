@@ -22,6 +22,7 @@ public class Game implements Runnable {
 	// States
 	private State gameState;
 	private State menuState;
+	private GameState toplayers;
 	
 	//Input
 	private MauseManager mouseManager;
@@ -52,6 +53,7 @@ public class Game implements Runnable {
 
 		gameState = new GameState(this);
 		menuState = new GameState(this);
+		toplayers = (GameState)gameState;
 		
 		State.setState(gameState);
 	}
@@ -115,6 +117,12 @@ public class Game implements Runnable {
 		}
 	}
 	
+	public GameState getGamestate() {
+		
+		return toplayers;
+	}
+
+	
 	public MauseManager getMauseManager() {
 		
 		return mouseManager;
@@ -124,5 +132,7 @@ public class Game implements Runnable {
 		return keyManager;
 	}
 	
-
+	public Display getDisplay() {
+		return display;
+	}
 }

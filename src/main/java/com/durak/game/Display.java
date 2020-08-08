@@ -3,6 +3,7 @@ package com.durak.game;
 import java.awt.Canvas;
 import java.awt.Dimension;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class Display {
@@ -22,8 +23,6 @@ public class Display {
 		createDisplay();
 
 	}
-	
-	
 
 	private void createDisplay() {
 		frame = new JFrame(title);
@@ -38,7 +37,7 @@ public class Display {
 		canvas.setMaximumSize(new Dimension(width, height));
 		canvas.setMinimumSize(new Dimension(width, height));
 		canvas.setFocusable(false);
-		
+
 		frame.add(canvas);
 		frame.pack();
 	}

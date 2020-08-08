@@ -47,7 +47,21 @@ public class Computer extends Player {
 			players = new ArrayList<>(game.getGamestate().getPlayers());
 			faceup = true;
 //			System.out.println(players.get(0).getName());
+<<<<<<< HEAD
 		
+=======
+			if (players.get(0).getSelectedCard()[0] != null) {
+				
+				for (int i = 0; i < cards.size(); i++) {
+					
+					if (players.get(0).getSelectedCard()[0].getSuit() == cards.get(i).getSuit()) {
+						playerPlay(players.get(0).getSelectedCard()[0]).setY(390);
+						
+					}
+				}
+
+			}
+>>>>>>> 9efa3683b6b70f5a2e3448e29c14c7cc3177c73a
 		}
 	}
 
@@ -55,6 +69,7 @@ public class Computer extends Player {
 		// find smaller card
 		Card tmp = cards.get(0);
 		int apponent = card.getSuit();
+<<<<<<< HEAD
 		
 		for (int i = 0; i < cards.size(); i++) {
 			if (cards.get(i).getSuit() == card.getSuit() && cards.get(i).getRang() > card.getRang()) {
@@ -67,6 +82,13 @@ public class Computer extends Player {
 			}
 		}
 
+=======
+		for (int i = 0; i < cards.size(); i++) {
+			if (apponent == cards.get(i).getSuit() && cards.get(i).getRang() > card.getRang()) {
+				tmp = cards.get(i);
+			}
+		}
+>>>>>>> 9efa3683b6b70f5a2e3448e29c14c7cc3177c73a
 		return tmp;
 	}
 

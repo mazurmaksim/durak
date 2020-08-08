@@ -54,8 +54,11 @@ public class GameState extends State {
 		trump.render(g);
 		deck.render(g);
 		
+<<<<<<< HEAD
 	}
 	public Dealer getDealer() {
 		return dlr;
+=======
+>>>>>>> 9efa3683b6b70f5a2e3448e29c14c7cc3177c73a
 	}
 }

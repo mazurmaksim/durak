@@ -27,7 +27,10 @@ public class Player extends Creature {
 	private JFrame display;
 	private Player player;
 	private boolean faceup = false;
+<<<<<<< HEAD
 	private boolean flag;
+=======
+>>>>>>> 9efa3683b6b70f5a2e3448e29c14c7cc3177c73a
 
 	private Game game;
 
@@ -134,6 +137,7 @@ public class Player extends Creature {
 //		}
 
 		if (game.getKeyManager().enter) {
+<<<<<<< HEAD
 			
 				if(flag) {
 					flag= false;
@@ -148,11 +152,18 @@ public class Player extends Creature {
 					
 				}
 
+=======
+			if (selectedCard[0] != null) {
+				selectedCard[0].setY(350);
+				//selectedCard[0] = null;
+			}
+>>>>>>> 9efa3683b6b70f5a2e3448e29c14c7cc3177c73a
 		}
 
 		if (game.getKeyManager().right) {
 
 			if (i > 0) {
+
 				cards.get(i - 1).setY(y);
 			}
 			if (i < cards.size()) {
@@ -181,7 +192,11 @@ public class Player extends Creature {
 
 	}
 
+<<<<<<< HEAD
 	public ArrayList<Card> getSelectedCard() {
+=======
+	public Card[] getSelectedCard() {
+>>>>>>> 9efa3683b6b70f5a2e3448e29c14c7cc3177c73a
 		return selectedCard;
 	}
 
@@ -190,12 +205,21 @@ public class Player extends Creature {
 
 		// Player 1 cards
 		float playerXcoord = 30;
+<<<<<<< HEAD
 		for (int i = 0; i < this.getCards().size(); i++) {
 			this.cards.get(i).setFace_up(faceup);
 			this.cards.get(i).setX(playerXcoord + x);
 			this.cards.get(i).render(g);
 			playerXcoord += 30;
 		}
+=======
+			for (int i = 0; i < this.getCards().size(); i++) {
+				this.cards.get(i).setFace_up(faceup);
+				this.cards.get(i).setX(playerXcoord + x);
+				this.cards.get(i).render(g);
+				playerXcoord += 30;
+		} 
+>>>>>>> 9efa3683b6b70f5a2e3448e29c14c7cc3177c73a
 		playerXcoord = 30;
 	}
 

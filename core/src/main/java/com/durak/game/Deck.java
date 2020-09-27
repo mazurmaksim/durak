@@ -6,15 +6,15 @@ public class Deck  {
 
     public LinkedList<Card> deck;
 
-    Deck() {
-
+    public Deck() {
+        buildCards();
     }
 
     public int size() {
         return deck.size();
     }
 
-    public void buildCards() {
+    public LinkedList<Card> buildCards() {
         deck = new LinkedList<Card>();
     // Добавляю карты в колоду.
         for (int i = 0; i < CardsSuit.values().length; i++) {
@@ -66,7 +66,7 @@ public class Deck  {
 //        deck.add(new Card(game, false, CardsSuit.DIAMONDS, CardsRang.QUEEN, x, y));
 //        deck.add(new Card(game, false, CardsSuit.DIAMONDS, CardsRang.KING, x, y));
 //        deck.add(new Card(game, false, CardsSuit.DIAMONDS, CardsRang.ACE, x, y));
-
+    return deck;
     }
 
     public LinkedList<Card> getDeck() {

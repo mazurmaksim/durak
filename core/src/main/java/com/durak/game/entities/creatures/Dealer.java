@@ -12,15 +12,11 @@ public class Dealer{
 	private Deck deck;
 	private Random rnd;
 	private Card trump;
-	private float x,y;
-	
+
 	public Dealer(Deck deck) {
-		this.x = x;
-		this.y = y;
 		this.deck = deck;
 		rnd = new Random();
 	}
-
 
 	public void shuffleDeck() {
 
@@ -42,14 +38,6 @@ public class Dealer{
 
 	}
 
-
-	public void putCard(Card card) {
-		card.setX(x);
-		card.setY(y);
-		cards.add(card);
-
-	}
-	
 	public Card getTrump() {
 
 		return trump;

@@ -1,21 +1,23 @@
 package com.durak.game;
 
-public class Card  {
-
-	public static final int WIDTH = 202, HEIGHT = 281;
+public class Card {
 
 	public CardsRang rang;
 	public CardsSuit suit;
 	public boolean face_up = false;
-	private float x, y;
-
 
 	public Card(boolean face_up, CardsSuit suit, CardsRang rang) {
-		this.x = x;
-		this.y = y;
 		this.rang = rang;
 		this.suit = suit;
 		this.face_up = face_up;
+	}
+
+	public void setSuit(CardsSuit suit){
+		this.suit = suit;
+	}
+
+	public void setRang(CardsRang rang){
+		this.rang = rang;
 	}
 
 	public boolean isFace_up() {
@@ -25,15 +27,6 @@ public class Card  {
 	public void setFace_up(boolean face_up) {
 		this.face_up = face_up;
 	}
-
-	public void setX(float x) {
-		this.x = x;
-	}
-
-	public void setY(float y) {
-		this.y = y;
-	}
-
 
 	public CardsSuit getSuit() {
 
@@ -94,19 +87,6 @@ public class Card  {
 			strRang = "ACE";
 			break;
 		}
-
-		return " <<== " + strSuit + " " + strRang + " ==>> " + "\n";
-
+	return " <<== " + strSuit + " " + strRang + " ==>> " + "\n";
 	}
-
-	public float getX() {
-		return x;
-
-	}
-
-	public float getY() {
-		return y;
-
-	}
-
 }

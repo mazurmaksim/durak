@@ -1,12 +1,10 @@
 package com.durak.game.entities.creatures;
 
-import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 
 import com.durak.game.Card;
 import com.durak.game.Deck;
-import com.durak.game.entities.Entity;
 
 public class Dealer{
 	private static final int NUM_OF_CARDS = 6;

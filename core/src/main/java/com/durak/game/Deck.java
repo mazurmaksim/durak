@@ -1,9 +1,6 @@
 package com.durak.game;
 
-import java.awt.Graphics;
 import java.util.*;
-
-import com.durak.game.entities.Entity;
 
 public class Deck  {
 

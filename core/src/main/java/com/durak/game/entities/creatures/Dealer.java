@@ -8,23 +8,22 @@ import com.durak.game.Card;
 import com.durak.game.Deck;
 import com.durak.game.entities.Entity;
 
-public class Dealer extends Entity{
+public class Dealer{
 	private static final int NUM_OF_CARDS = 6;
 	public ArrayList<Card> cards;
 	private Deck deck;
 	private Random rnd;
-	private Card trump;// козырная карта
+	private Card trump;
 	private float x,y;
 	
-	public Dealer(Deck deck, float x, float y) {
-		super(x,y);
+	public Dealer(Deck deck) {
 		this.x = x;
 		this.y = y;
 		this.deck = deck;
 		rnd = new Random();
 	}
 
-// Перетасовка колоды карт
+
 	public void shuffleDeck() {
 
 		for (int i = 0; i < deck.getDeck().size(); i++) {
@@ -36,8 +35,7 @@ public class Dealer extends Entity{
 		}
 
 	}
-// Берется одна карта по индеку, по умолчанию карта сверху колоды.
-	
+
 	public Card getCard(int index) {
 
 		Card tmpCard = deck.getDeck().get(index);
@@ -46,19 +44,7 @@ public class Dealer extends Entity{
 
 	}
 
-	// Раздача карт по 6
-	public void dealCards(Player player) {
-		
-		
-		for (int i = 0; i < NUM_OF_CARDS; i++) {
-			
-			player.putCard(getCard(i));
-			
-		}
-		
-	
-	}
-	
+
 	public void putCard(Card card) {
 		card.setX(x);
 		card.setY(y);
@@ -72,22 +58,11 @@ public class Dealer extends Entity{
 		
 	}
 	
-	//Козырная карта берется с конца колоды
 	public Card trumpCard() {
 		
 		trump =  deck.getDeck().getLast();
 		return trump;
 		
-	}
-
-	@Override
-	public void tick() {
-		
-	}
-
-	@Override
-	public void render(Graphics g) {
-		g.drawImage(trump.faceUp(), (int)x, (int)y, null);
 	}
 
 }

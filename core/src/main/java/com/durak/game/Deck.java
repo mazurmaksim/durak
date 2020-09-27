@@ -5,34 +5,11 @@ import java.util.*;
 
 import com.durak.game.entities.Entity;
 
-public class Deck extends Entity {
+public class Deck  {
 
-    private Game game;
     public LinkedList<Card> deck;
-    private float x, y;
 
-    public float getX() {
-        return x;
-    }
-
-    public void setX(float x) {
-        this.x = x;
-    }
-
-    public float getY() {
-        return y;
-    }
-
-    public void setY(float y) {
-        this.y = y;
-    }
-
-    public Deck(Game game, float x, float y) {
-
-        super(x, y);
-        this.x = x;
-        this.y = y;
-        this.game = game;
+    Deck() {
 
     }
 
@@ -45,7 +22,7 @@ public class Deck extends Entity {
     // Добавляю карты в колоду.
         for (int i = 0; i < CardsSuit.values().length; i++) {
 			for (int j=0;j<CardsRang.values().length;j++){
-                deck.add(new Card(game, false, CardsSuit.values()[i], CardsRang.values()[j], x, y));
+                deck.add(new Card(false, CardsSuit.values()[i], CardsRang.values()[j]));
             }
         }
 
@@ -101,23 +78,4 @@ public class Deck extends Entity {
 
     }
 
-    @Override
-    public void tick() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void render(Graphics g) {
-        // TODO Auto-generated method stub
-        int count = 3;
-        for (int i = 0; i < deck.size(); i++) {
-
-            g.drawImage(deck.get(i).faceDoWn(), 80 - count - i, 350, null);
-            count++;
-
-        }
-    }
-
-
-}
+  }

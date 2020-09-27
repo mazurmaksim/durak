@@ -39,6 +39,24 @@ public class Card {
 
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Card card = (Card) o;
+
+		if (rang != card.rang) return false;
+		return suit == card.suit;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = rang.hashCode();
+		result = 31 * result + suit.hashCode();
+		return result;
+	}
+
 	public String toString() {
 
 		String strSuit = "";

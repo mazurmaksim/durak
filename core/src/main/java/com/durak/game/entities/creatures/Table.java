@@ -6,14 +6,14 @@ import java.util.Random;
 import com.durak.game.Card;
 import com.durak.game.Deck;
 
-public class Dealer{
+public class Table {
 	private static final int NUM_OF_CARDS = 6;
 	public ArrayList<Card> cards;
 	private Deck deck;
 	private Random rnd;
 	private Card trump;
 
-	public Dealer(Deck deck) {
+	public Table(Deck deck) {
 		this.deck = deck;
 		rnd = new Random();
 	}

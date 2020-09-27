@@ -55,7 +55,7 @@ public class DeckTest {
         expected.add(new Card(false, CardsSuit.CLUBS, CardsRang.ACE));
 
         for(int i = 0;i<expected.size();i++)
-           assertEquals("Checking item with index " + i, expected.get(i).toString(), deck.getDeck().get(i).toString());
+           assertEquals("Checking item with index " + i, expected.get(i), deck.getDeck().get(i));
            assertEquals("Checking deck size",deck.getDeck().size(),expected.size());
     }
 }

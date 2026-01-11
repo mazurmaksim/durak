@@ -13,7 +13,7 @@ public class Assets {
 	
 	public static void init() {
 		
-		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/cards/png"));
+		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("res/textures/cards/png"));
 			
 			
 		}

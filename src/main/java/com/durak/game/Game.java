@@ -66,28 +66,37 @@ public class Game implements Runnable {
 		
 	}
 
-	private void render() {
-		bs = display.getCanvas().getBufferStrategy();
-		if (bs == null) {
-			display.getCanvas().createBufferStrategy(3);
-			return;
-		}
-		g = bs.getDrawGraphics();
-		// Clear Screen
-		g.clearRect(0, 0, width, height);
-		// Draw Here
+    private void render() {
+        bs = display.getCanvas().getBufferStrategy();
+        if (bs == null) {
+            display.getCanvas().createBufferStrategy(3);
+            return;
+        }
 
-		if(State.getState() !=null) {
-			State.getState().render(g);
-		}
-		
-		// End Draw
-		bs.show();
-		g.dispose();
+        g = bs.getDrawGraphics();
+        try {
+            // Fill background (more reliable than clearRect)
+            g.fillRect(0, 0, width, height);
 
-	}
+            // Render current state
+            State current = State.getState();
+            if (current != null) {
+                current.render(g);
+            }
+        } finally {
+            // Always dispose graphics
+            g.dispose();
+        }
 
-	public void run() {
+        // Show buffer
+        bs.show();
+
+        // Optional: helps on some systems (esp. Linux) to reduce tearing
+        // Toolkit.getDefaultToolkit().sync();
+    }
+
+
+    public void run() {
 		init();
 
 		while (running) {

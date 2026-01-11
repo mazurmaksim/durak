@@ -2,85 +2,66 @@ package com.durak.game.entities.creatures;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.durak.game.Card;
 import com.durak.game.Deck;
 import com.durak.game.Game;
-import com.durak.game.states.GameState;
 
 public class Computer extends Player {
-	private Game game;
-	private float x;
-	private float y;
-	private boolean faceup;
-	public ArrayList<Card> cards;
-	private String name;
-	private Card card;
-	private Deck deck;
-	private Card[] selectedCard;
-	private GameState playerPlay;
-	private ArrayList<Player> players;
-	private ArrayList<Card> tmpArr;
 
-	public Computer(Game game, String name, Deck deck, boolean faceup, float x, float y) {
-		super(game, name, deck, faceup, x, y);
-		cards = new ArrayList<Card>();
-		this.game = game;
-		this.x = x;
-		this.y = y;
-		this.deck = deck;
-		this.faceup = faceup;
+    private final Game game;
 
-	}
+    public Computer(Game game, String name, Deck deck, boolean faceup, float x, float y) {
+        super(game, name, deck, faceup, x, y);
+        this.game = game;
+    }
 
-	public void putCard(Card card) {
-		card.setX(x);
-		card.setY(y);
-		cards.add(card);
+    @Override
+    public void tick() {
+        // Example debug toggle to show computer cards
+        if (game.getKeyManager().f_nine) {
+            setFaceup(true);
+        }
+    }
 
-	}
+    /**
+     * Choose a card to beat the opponent's card.
+     * - Prefer same suit with minimal rank that still beats.
+     * - Otherwise, use minimal trump if opponent is not trump.
+     * - Return null if cannot beat.
+     */
+    public Card chooseDefenseCard(Card opponentCard) {
+        List<Card> hand = getCards();
+        if (hand.isEmpty()) return null;
 
-	@Override
-	public void tick() {
-		if (game.getKeyManager().f_nine) {
-			players = new ArrayList<>(game.getGamestate().getPlayers());
-			faceup = true;
-		
-		}
-	}
+        int trumpSuit = game.getGamestate().getDealer().getTrump().getSuit();
 
-	public Card playerPlay(Card card) {
-		// find smaller card
-		Card tmp = cards.get(0);
-		int apponent = card.getSuit();
-		
-		for (int i = 0; i < cards.size(); i++) {
-			if (cards.get(i).getSuit() == card.getSuit() && cards.get(i).getRang() > card.getRang()) {
-				tmp = cards.get(i);
-			}
+        Card bestSameSuit = null;
+        Card bestTrump = null;
 
-			else if (cards.get(i).getSuit() == game.getGamestate().getDealer().getTrump().getSuit()
-					&& card.getSuit() != game.getGamestate().getDealer().getTrump().getSuit()) {
-				tmp = cards.get(i);
-			}
-		}
+        for (Card c : hand) {
+            // Same suit: choose the minimal rank that still beats
+            if (c.getSuit() == opponentCard.getSuit() && c.getRang() > opponentCard.getRang()) {
+                if (bestSameSuit == null || c.getRang() < bestSameSuit.getRang()) {
+                    bestSameSuit = c;
+                }
+            }
 
-		return tmp;
-	}
+            // Trump: if opponent isn't trump, pick minimal trump
+            if (opponentCard.getSuit() != trumpSuit && c.getSuit() == trumpSuit) {
+                if (bestTrump == null || c.getRang() < bestTrump.getRang()) {
+                    bestTrump = c;
+                }
+            }
+        }
 
-	public ArrayList<Card> getCards() {
+        return (bestSameSuit != null) ? bestSameSuit : bestTrump;
+    }
 
-		return cards;
-
-	}
-
-	public void render(Graphics g) {
-		float playerXcoord = 30;
-		for (int i = 0; i < getCards().size(); i++) {
-			getCards().get(i).setFace_up(faceup);
-			getCards().get(i).setX(playerXcoord + x);
-			getCards().get(i).render(g);
-			playerXcoord += 30;
-		}
-	}
+    @Override
+    public void render(Graphics g) {
+        // Use Player's render (unless you want a different layout)
+        super.render(g);
+    }
 }

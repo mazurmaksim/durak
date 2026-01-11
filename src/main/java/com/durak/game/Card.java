@@ -32,7 +32,7 @@ public class Card extends Entity {
 	public static final int SPADES = 6;
 	public static final int CLUBS = 5;
 
-	public static SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/cards.png"));
+	public static SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/cards.png"));
 	public int rang;
 	public int suit;
 	public boolean face_up = false;

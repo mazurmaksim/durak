@@ -14,7 +14,7 @@ public class Table extends Entity{
 	private Deck deck;
 	private Player player;
 	float x,y;
-	public static SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/main-back.png"));
+	public static SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/main-back.png"));
 	
 	public Table(float x, float y) {
 		super(x,y);
